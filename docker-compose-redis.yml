@@ -1,0 +1,32 @@
+version: "1"
+# The Docker services.
+services:
+  # The Redis database container.
+  redis:
+    # https://hub.docker.com/_/redis
+    image: redis:alpine
+    container_name: redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      retries: 3
+      timeout: 5s
+    networks:
+      - local
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_db_data:/data
+
+# # The Docker networks.
+# networks:
+#   local:
+#     driver: "bridge"
+#     name: ${NETWORK_NAME:-local_dbs_network}
+
+volumes:
+  redis_db_data:
+    driver: "local"
+    name: "${DB_VOLUME_DATA_NAME:-redis_db_data}"
+
+  # TODO check url
+  # REDIS_URL=redis://redis:6379
