@@ -1,5 +1,3 @@
-version: "3.3"
-
 # Usage:
 #   docker stack deploy -c stack.yml mongo
 # or

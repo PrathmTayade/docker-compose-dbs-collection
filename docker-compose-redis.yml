@@ -1,4 +1,3 @@
-version: "1"
 # The Docker services.
 services:
   # The Redis database container.
